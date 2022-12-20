@@ -1,4 +1,4 @@
-package ProductsStock;
+package Controller.ProductsStock;
 
 public class StockRecord {
 

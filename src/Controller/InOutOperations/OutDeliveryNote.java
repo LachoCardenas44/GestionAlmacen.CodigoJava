@@ -1,4 +1,4 @@
-package InOutOperations;
+package Controller.InOutOperations;
 
 public class OutDeliveryNote {
 

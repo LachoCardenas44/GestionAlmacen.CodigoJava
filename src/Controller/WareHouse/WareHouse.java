@@ -1,4 +1,5 @@
-package WareHouse;
+package Controller.WareHouse;
+
 
 public class WareHouse {
 

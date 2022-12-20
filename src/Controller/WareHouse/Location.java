@@ -1,4 +1,4 @@
-package WareHouse;
+package Controller.WareHouse;
 
 public class Location {
 

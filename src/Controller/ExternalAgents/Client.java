@@ -1,4 +1,4 @@
-package ExternalAgents;
+package Controller.ExternalAgents;
 
 public class Client extends ExternalAgent {
 

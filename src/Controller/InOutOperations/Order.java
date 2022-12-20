@@ -1,6 +1,6 @@
-package InOutOperations;
+package Controller.InOutOperations;
 
-import ProductsStock.*;
+import Controller.ProductsStock.*;
 
 public class Order {
 
