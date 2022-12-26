@@ -48,6 +48,49 @@ InDeliveryNote... Registro de pedidos.</b></p>
 <br>
 <br>
 
+<h2 align="center">Módulo a desarrollar por vmcalderingamez 
+<br>
+:link: (https://github.com/LachoCardenas44) :link:</h2>
+<br>
+Imagen del módulo (UML)<img src ="https://github.com/LachoCardenas44/GestionAlmacen.VisualParadigm/blob/main/modulos/Modulo%20vmcalderingamez.jpg">
+<br>
+<br>
+
+:page_with_curl:**Descripción**:page_with_curl:
+<br>
+<br>
+<p><b>
+User: Clase abstracta donde estarán las propiedades de todos los usuarios que accedan al sistema.
+<br>
+<br>
+InternalAgent: Clase abstracta donde se definen a los usuarios que son internos o pertenecen a un almacén específico.
+<br>
+<br>
+ExternalAgent: Clase abstracta donde se definen a los usuarios que no pertenecen a un almanén e interactúan con él.
+<br>
+<br>
+Admin: Es el controlador principal del negocio, tiene la funcionalidad de agregar o eliminar a otros agentes tanto internos como externos así como crear y modificar envíos y pedidos o eliminarlos.
+<br>
+<br>
+Client: Es la entidad extena que consultará la información de los envíos.
+<br>
+<br>
+Supplier: Es la entidad externa encargada de validar o cancelar un pedido.
+<br>
+<br>
+Product: Es la unidad fundamental del negocio, sus instancias componen el registro de stock y se encuentran en las órdenes de pedido y envío.
+<br>
+<br>
+PhisicLocation: Contiene la información exacta de la localización de un producto.
+<br>
+<br>
+QualityRecord: Es un registro que muestra información cualitativa de un producto.
+<br>
+<br>
+StockRecord:  Es un registro que muestra información acerca de la existencia de un producto en el almacén. 
+</b></p>
+<br>
+
 :ballot_box_with_check: **Tecnologías Utilizadas** :ballot_box_with_check:
 <br>
 <br>

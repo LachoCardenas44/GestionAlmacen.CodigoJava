@@ -1,7 +1,8 @@
 package Controller.ExternalAgents;
 
 public class ExternalAgent {
-
+	
+	
 	protected String name;
 	protected int phoneNumber;
 	protected String address;

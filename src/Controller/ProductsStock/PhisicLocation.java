@@ -2,8 +2,7 @@ package Controller.ProductsStock;
 
 public class PhisicLocation {
 
-	private int shelf;
-	
+	private int shelf;	
 	private int hall;
 	private int high;
 
