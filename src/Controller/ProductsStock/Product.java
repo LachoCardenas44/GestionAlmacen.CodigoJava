@@ -1,43 +1,36 @@
 package Controller.ProductsStock;
 
+import java.io.Serializable;
+
 import Controller.ExternalAgents.Supplier;
 
-public class Product {
+public class Product implements Serializable{
 
 	private String name;
-	private PhisicLocation phisicLocation;
-	private String category;
-	private StockRecord stockRecord;
-	private QualityRecord qualityRecord;
-	private double sellPrice;
-	private double cost;
-	private String basePrice;
-	private Supplier supplier;
+	private PhisicLocation phisicLocation;	
+	private String productType;	
+	private String sellPrice;
+	private String cost;
+	private String supplier;
 
-	/**
-	 * 
-	 * @param name
-	 * @param phisicLocation
-	 * @param category
-	 * @param stockRecord
-	 * @param qualityRecord
-	 */
-	public Product(String name, PhisicLocation phisicLocation, String category, StockRecord stockRecord, QualityRecord qualityRecord) {
+	
+	public Product(String name, PhisicLocation phisicLocation,String supplier, String productType, String sellPrice, String cost) {
 		
-		throw new UnsupportedOperationException();
+		this.name=name;
+		this.phisicLocation=phisicLocation;
+		this.supplier=supplier;
+		this.productType=productType;		
+		this.cost=cost;
+		this.sellPrice=sellPrice;
+		
 
 	}
 
 	public String getName() {
 
-		return this.name;
+		return name;
 		
 	}
-
-	/**
-	 * 
-	 * @param name
-	 */
 	public void setName(String name) {
 
 		this.name = name;
@@ -46,127 +39,54 @@ public class Product {
 
 	public PhisicLocation getPhisicLocation() {
 
-		throw new UnsupportedOperationException();
+		return phisicLocation;
 
 	}
-
-	/**
-	 * 
-	 * @param phisicLocation
-	 */
 	public void setPhisicLocation(PhisicLocation phisicLocation) {
 
-		throw new UnsupportedOperationException();
+		this.phisicLocation=phisicLocation;
 
 	}
+	
+	public String getProductType() {
 
-	public String getCategory() {
-
-		return this.category;
-
-	}
-
-	/**
-	 * 
-	 * @param category
-	 */
-	public void setCategory(String category) {
-
-		this.category = category;
-		
-	}
-
-	public StockRecord getStockRecord() {
-
-		return this.stockRecord;
+		return this.productType;
 
 	}
+	public void setProductType(String productType) {
 
-	/**
-	 * 
-	 * @param stockRecord
-	 */
-	public void setStockRecord(StockRecord stockRecord) {
+		this.productType = productType;
 
-		this.stockRecord = stockRecord;
+	}	
 
-	}
-
-	public QualityRecord getQualityRecord() {
-
-		return this.qualityRecord;
-
-	}
-
-	/**
-	 * 
-	 * @param qualityRecord
-	 */
-	public void setQualityRecord(QualityRecord qualityRecord) {
-
-		this.qualityRecord = qualityRecord;
-
-	}
-
-	public double getSellPrice() {
+	public String getSellPrice() {
 
 		return this.sellPrice;
 
 }
-
-	/**
-	 * 
-	 * @param sellPrice
-	 */
-	public void setSellPrice(double sellPrice) {
+	public void setSellPrice(String sellPrice) {
 
 		this.sellPrice = sellPrice;
 
 	}
 
-	public double getCost() {
+	public String getCost() {
 
 		return this.cost;
 
 	}
-
-	/**
-	 * 
-	 * @param cost
-	 */
-	public void setCost(double cost) {
+	public void setCost(String cost) {
 
 		this.cost = cost;
 
 	}
 
-	public String getBasePrice() {
-
-		return this.basePrice;
-
-	}
-
-	/**
-	 * 
-	 * @param basePrice
-	 */
-	public void setBasePrice(String basePrice) {
-
-		this.basePrice = basePrice;
-
-	}
-
-	public Supplier getSupplier() {
+	public String getSupplier() {
 
 		return this.supplier;
 
 	}
-
-	/**
-	 * 
-	 * @param supplier
-	 */
-	public void setSupplier(Supplier supplier) {
+	public void setSupplier(String supplier) {
 
 		this.supplier = supplier;
 		

@@ -1,47 +1,29 @@
 package Controller.InOutOperations;
 
+import java.io.Serializable;
+
 import Controller.ProductsStock.*;
 
-public class Order {
+public class Order implements Serializable{
 
-	private int deliveryTime;
+
 	private Product product;
 	private int minAmount;
 	private int amount;
-	private String date;
+	private boolean validate;
 
-	/**
-	 * 
-	 * @param deliveryTime
-	 * @param product
-	 * @param minAmount
-	 * @param amount
-	 */
-	public Order(int deliveryTime, Product product, int minAmount, int amount) {
-		// TODO - implement Order.Order
-		throw new UnsupportedOperationException();
-	}
+	public Order(Product product,int amount,boolean validate){
 
-	public int getDeliveryTime() {
-		return this.deliveryTime;
-	}
+        this.product=product;
+        this.amount=amount;
+		this.validate=validate;
 
-	/**
-	 * 
-	 * @param deliveryTime
-	 */
-	public void setDeliveryTime(int deliveryTime) {
-		this.deliveryTime = deliveryTime;
-	}
+    }
 
 	public Product getProduct() {
 		return this.product;
 	}
 
-	/**
-	 * 
-	 * @param product
-	 */
 	public void setProduct(Product product) {
 		this.product = product;
 	}
@@ -50,10 +32,6 @@ public class Order {
 		return this.minAmount;
 	}
 
-	/**
-	 * 
-	 * @param minAmount
-	 */
 	public void setMinAmount(int minAmount) {
 		this.minAmount = minAmount;
 	}
@@ -62,34 +40,23 @@ public class Order {
 		return this.amount;
 	}
 
-	/**
-	 * 
-	 * @param amount
-	 */
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-
-	public String getDate() {
-		return this.date;
+	public boolean getValidate() {
+		return validate;
 	}
 
-	/**
-	 * 
-	 * @param date
-	 */
-	public void setDate(String date) {
-		this.date = date;
+	public void setValidate(boolean validate) {
+		this.validate = validate;
 	}
+
 
 	public double OrderCost() {
-		// TODO - implement Order.OrderCost
-		throw new UnsupportedOperationException();
-	}
+		
+		return Integer.parseInt(product.getCost())*amount;
+		
 
-	public double TotalOrderCost() {
-		// TODO - implement Order.TotalOrderCost
-		throw new UnsupportedOperationException();
 	}
 
 }

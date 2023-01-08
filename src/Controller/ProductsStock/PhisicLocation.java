@@ -1,24 +1,30 @@
 package Controller.ProductsStock;
 
-public class PhisicLocation {
+import java.io.Serializable;
 
-	private int shelf;	
-	private int hall;
-	private int high;
+public class PhisicLocation implements Serializable{
 
-	public int getHall() {
+	private String shelf;	
+	private String hall;
+	private String high;
+
+
+	public PhisicLocation(String shelf,String hall,String high){
+		this.hall=hall;
+		this.high=high;
+		this.shelf=shelf;
+	}
+
+	public String getHall() {
 		return this.hall;
 	}
 
-	/**
-	 * 
-	 * @param hall
-	 */
-	public void setHall(int hall) {
+	
+	public void setHall(String hall) {
 		this.hall = hall;
 	}
 
-	public int getHigh() {
+	public String getHigh() {
 		return this.high;
 	}
 
@@ -26,22 +32,17 @@ public class PhisicLocation {
 	 * 
 	 * @param high
 	 */
-	public void setHigh(int high) {
+	public void setHigh(String high) {
 		this.high = high;
 	}
 
-	public int getShelv() {
-		// TODO - implement PhisicLocation.getShelv
-		throw new UnsupportedOperationException();
+	public String getShelf() {
+		return shelf;
 	}
 
-	/**
-	 * 
-	 * @param shelv
-	 */
-	public void setShelv(int shelv) {
-		// TODO - implement PhisicLocation.setShelv
-		throw new UnsupportedOperationException();
+
+	public void setShelf(String shelf) {
+		this.shelf=shelf;
 	}
 
 }

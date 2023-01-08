@@ -1,96 +1,64 @@
 package Controller.InOutOperations;
 
-import ProductsStock.*;
+import Controller.ProductsStock.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Delivery {
+public class Delivery implements Serializable {
+    
+    private ArrayList<Order> orderList;
+    private double transportationCost;
+    private double tax;
+    private double discount;
+    private String client;
 
-	private Product[] selledProducts;
-	private double transportationCost;
-	private String destinationCountry;
-	private int tax;
-	private int discount;
+    public Delivery(ArrayList<Order> orderList,double transportationCost,double tax,double discount,String client){
+        
+        this.orderList=orderList;
+        this.transportationCost=transportationCost;
+        this.tax=tax;
+        this.discount=discount;
+        this.client=client;
+        
 
-	/**
-	 * 
-	 * @param selledProducts
-	 * @param transportationCost
-	 * @param destinationCountry
-	 */
-	public Delivery(Product[] selledProducts, double transportationCost, String destinationCountry) {
-		// TODO - implement Delivery.Delivery
-		throw new UnsupportedOperationException();
-	}
-
-	public double BaseCost() {
-		// TODO - implement Delivery.BaseCost
-		throw new UnsupportedOperationException();
-	}
-
-	public Product[] getSelledProducts() {
-		// TODO - implement Delivery.getSelledProducts
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param selledProducts
-	 */
-	public void setSelledProducts(Product[] selledProducts) {
-		// TODO - implement Delivery.setSelledProducts
-		throw new UnsupportedOperationException();
-	}
-
-	public double getTransportationCost() {
-		return this.transportationCost;
-	}
-
-	/**
-	 * 
-	 * @param transportationCost
-	 */
-	public void setTransportationCost(double transportationCost) {
-		this.transportationCost = transportationCost;
-	}
-
-	public String getDestinationCountry() {
-		return this.destinationCountry;
-	}
-
-	/**
-	 * 
-	 * @param destinationCountry
-	 */
-	public void setDestinationCountry(String destinationCountry) {
-		this.destinationCountry = destinationCountry;
-	}
-
-	public int getTax() {
-		return this.tax;
-	}
-
-	/**
-	 * 
-	 * @param tax
-	 */
-	public void setTax(int tax) {
-		this.tax = tax;
-	}
-
-	public int getDiscount() {
-		return this.discount;
-	}
-
-	/**
-	 * 
-	 * @param discount
-	 */
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}
-
-	public double DeliveryCost() {
-		// TODO - implement Delivery.DeliveryCost
-		throw new UnsupportedOperationException();
-	}
-
+    }
+    public void setOrderList(ArrayList<Order> orderList){
+        this.orderList=orderList;
+    }
+    public ArrayList<Order> getOrderList(){
+        return orderList;
+    }
+    public void setTransportationCost(int transportationCost){
+        this.transportationCost=transportationCost;
+    }
+    public double getTransportationCost(){
+        return transportationCost;
+    }
+    public void setTax(double tax){
+        this.tax=tax;
+    }
+    public double getTax(){
+        return tax;
+    }
+    public void setDiscount(double discount){
+        this.discount=discount;
+    }
+    public double getDiscount(){
+        return discount;
+    }
+    public void setClient(String client){
+        this.client=client;
+    }
+    public String getClient(){
+        return client;
+    }
+    public double DeliveryCost(){
+        double totalCost = 0;
+        for(int i = 0;i<orderList.size();i++){
+           totalCost += orderList.get(i).getAmount()*Integer.parseInt(orderList.get(i).getProduct().getSellPrice());
+        }
+        totalCost+=transportationCost+tax-discount;
+        return totalCost;
+    }
 }
+

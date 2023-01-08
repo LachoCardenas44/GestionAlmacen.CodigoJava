@@ -1,15 +1,30 @@
 package Controller.ExternalAgents;
 
-public class Supplier extends ExternalAgent {
+import java.io.Serializable;
 
-	public Supplier(String name, String phoneNumber, String adress, int id, String email, String funtion) {
-		super(name, phoneNumber, adress, id, email, funtion);
-		//TODO Auto-generated constructor stub
-	}
+public class Supplier implements Serializable{
 
-	public void confirmOrder() {
-		// TODO - implement Supplier.confirmOrder
-		throw new UnsupportedOperationException();
+	private String name;
+	private String id;
+
+	public Supplier(String name, String id) {
+		this.name=name;
+		this.id=id;
+		
 	}
+	public void setName(String name){
+		this.name=name;
+	}
+	public String getName(){
+		return name;
+	}
+	public void setId(String id){
+		this.id=id;
+	}
+	public String getId(){
+		return id;
+	}
+	
+	
 
 }

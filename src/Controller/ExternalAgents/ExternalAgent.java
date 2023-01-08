@@ -4,24 +4,20 @@ public class ExternalAgent {
 	
 	
 	protected String name;
-	protected int phoneNumber;
+	protected String phoneNumber;
 	protected String address;
 	protected int id;
 	protected String email;
 	protected String funtion;
 
-	/**
-	 * 
-	 * @param name
-	 * @param phoneNumber
-	 * @param adress
-	 * @param id
-	 * @param email
-	 * @param funtion
-	 */
-	public ExternalAgent(String name, String phoneNumber, String adress, int id, String email, String funtion) {
-		// TODO - implement ExternalAgent.ExternalAgent
-		throw new UnsupportedOperationException();
+	
+	public ExternalAgent(String name, String phoneNumber, String address, int id, String email, String funtion) {
+		this.name=name;
+		this.phoneNumber=phoneNumber;
+		this.address=address;
+		this.id=id;
+		this.email=email;
+		this.funtion=funtion;
 	}
 
 	public String getName() {
@@ -36,7 +32,7 @@ public class ExternalAgent {
 		this.name = name;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}
 
@@ -44,7 +40,7 @@ public class ExternalAgent {
 	 * 
 	 * @param phoneNumber
 	 */
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
