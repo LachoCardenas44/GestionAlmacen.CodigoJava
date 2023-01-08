@@ -34,7 +34,7 @@ Si presiona Envíos podrá ver la lista de envíos a realizar, seleccionando un 
 <br>
 :link: (https://github.com/LachoCardenas44) :link:</h2>
 <br>
-[Imagen del módulo (UML)](<img src = "https://github.com/LachoCardenas44/GestionAlmacen.VisualParadigm/blob/main/modulos/Modulo%20LazaroCardenas44.jpg">)
+[Imagen del módulo (UML)](<img src = "https://github.com/LachoCardenas44/GestionAlmacen.VisualParadigm/blob/main/modulos/moduloLachoCardenas44.jpg">)
 <br>
 <br>
 
@@ -45,19 +45,10 @@ Si presiona Envíos podrá ver la lista de envíos a realizar, seleccionando un 
 Warehouse... Se mostrarán los almacenes disponibles para la administración de los mismos, y además será posible la entrada de la información pertinente para controlar un nuevo almacén; es decir, el nombre y la localización.
 <br>
 <br>
-Location... Ubicación de los almacenes.
-<br>
-<br>
 Delivery... Corresponde a todo lo referente con la administración de los envíos; donde se mostrarán los productos a enviar, costo de transportación, país destino, tasa de impuestos, y porcentaje de descuento.
 <br>
 <br>
-OutDeliveryNote... Registro de envíos.
-<br>
-<br>
 Order... Corresponde a todo lo referente con la administración de los pedidos; efectuados por el propio personal de un respectivo almacén sobre el que se está trabajando y donde se mostrarán el producto requerido, cantidad de unidades, fecha de entrega, y fecha de realización del pedido.
-<br>
-<br>
-InDeliveryNote... Registro de pedidos.</b></p>
 <br>
 <br>
 <h2 align="center">Módulo a desarrollar por vmcalderingamez 
