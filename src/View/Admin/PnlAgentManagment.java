@@ -7,7 +7,8 @@ import Controller.ExternalAgents.Client;
 import Controller.ExternalAgents.Supplier;
 import Controller.WareHouse.Warehouse;
 import Model.GuardarCargarDatos;
-import View.WareHouse.FrmStartWarehouse;
+import View.Warehouse.FrmStartWarehouse;
+
 import java.awt.event.*;
 
 public class PnlAgentManagment extends JPanel implements ActionListener, MouseInputListener{

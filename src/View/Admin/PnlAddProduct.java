@@ -9,8 +9,9 @@ import Controller.ExternalAgents.Supplier;
 import Controller.ProductsStock.PhisicLocation;
 import Controller.ProductsStock.Product;
 import Controller.WareHouse.Warehouse;
-import View.WareHouse.FrmStartWarehouse;
 import Model.GuardarCargarDatos;
+import View.Warehouse.FrmStartWarehouse;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;

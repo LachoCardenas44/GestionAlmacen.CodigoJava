@@ -1,4 +1,4 @@
-package View.WareHouse;
+package View.Warehouse;
 
 
 import java.awt.*;

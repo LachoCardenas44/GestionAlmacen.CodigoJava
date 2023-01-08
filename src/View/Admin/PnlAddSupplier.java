@@ -6,8 +6,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 import Controller.ExternalAgents.Client;
 import Controller.ExternalAgents.Supplier;
-import View.WareHouse.FrmStartWarehouse;
 import Model.GuardarCargarDatos;
+import View.Warehouse.FrmStartWarehouse;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;

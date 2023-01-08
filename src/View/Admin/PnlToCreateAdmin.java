@@ -7,7 +7,8 @@ import javax.swing.border.LineBorder;
 import Controller.InternalAgents.Admin;
 import Controller.WareHouse.Warehouse;
 import Model.GuardarCargarDatos;
-import View.WareHouse.FrmStartWarehouse;
+import View.Warehouse.FrmStartWarehouse;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

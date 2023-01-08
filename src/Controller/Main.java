@@ -1,6 +1,6 @@
 package Controller;
 
-import View.WareHouse.FrmStartWarehouse;
+import View.Warehouse.FrmStartWarehouse;
 
 
 public class Main {  

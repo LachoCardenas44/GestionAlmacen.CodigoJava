@@ -11,8 +11,8 @@ import javax.swing.event.MouseInputListener;
 import Controller.ProductsStock.Product;
 import Controller.WareHouse.Warehouse;
 import Model.GuardarCargarDatos;
-import View.WareHouse.FrmStartWarehouse;
-import View.WareHouse.PnlChoice;
+import View.Warehouse.FrmStartWarehouse;
+import View.Warehouse.PnlChoice;
 
 
 public class PnlStock extends JPanel implements ActionListener, MouseInputListener{	
