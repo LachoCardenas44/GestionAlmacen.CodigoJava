@@ -1,52 +1,40 @@
 package Controller.WareHouse;
 
+import java.io.Serializable;
+import Controller.ExternalAgents.*;
+import Controller.InternalAgents.Admin;
 
-public class WareHouse {
+public class Warehouse implements Serializable{
 
-	private String name;
-	private Location location;
+    private String name;
+    private Admin admin;
+    private String address;
 
-	/**
-	 * 
-	 * @param Product
-	 */
-	public void SelfSupply(int[] Product) {
-		// TODO - implement WareHouse.SelfSupply
-		throw new UnsupportedOperationException();
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Location getLocation() {
-		return this.location;
-	}
-
-	/**
-	 * 
-	 * @param location
-	 */
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-
-	/**
-	 * 
-	 * @param name
-	 * @param location
-	 */
-	public WareHouse(String name, Location location) {
-		// TODO - implement WareHouse.WareHouse
-		throw new UnsupportedOperationException();
-	}
-
+    public Warehouse (String name,String address,Admin admin) {
+        this.name=name;
+        this.address=address;
+        this.admin=admin;
+    }
+    public void setName(String name){
+        this.name=name;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setAddress(String address){
+        this.address=address;
+    }
+    public String getAddress(){
+        return address;
+    }
+    public void setAdmin(Admin admin){
+        this.admin=admin;
+    }
+    public Admin getAdmin(){
+        return admin;
+    }
+    public String toString(){
+        return "Name : "+name+"\nAddress : "+address+"\nAdmin : "+admin.getName();
+    }
+    
 }
