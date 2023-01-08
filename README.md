@@ -74,7 +74,7 @@ Order... Corresponde a todo lo referente con la administración de los pedidos; 
 <br>
 :link: (https://github.com/LachoCardenas44) :link:</h2>
 <br>
-Imagen del módulo (UML)<img src ="https://github.com/LachoCardenas44/GestionAlmacen.VisualParadigm/blob/main/modulos/Modulo%20vmcalderingamez.jpg">
+Imagen del módulo (UML)<img src ="https://github.com/LachoCardenas44/GestionAlmacen.VisualParadigm/blob/main/modulos/Modulo%20vmcalderingamez.jpg?raw=true">
 <br>
 <br>
 
