@@ -34,7 +34,7 @@ Si presiona Envíos podrá ver la lista de envíos a realizar, seleccionando un 
 <br>
 :link: (https://github.com/LachoCardenas44) :link:</h2>
 <br>
-[Imagen del módulo (UML)](<img src = "https://github.com/LachoCardenas44/GestionAlmacen.VisualParadigm/blob/main/modulos/Modulo%20LazaroCardenas44.jpg">)
+[Imagen del módulo (UML)](<img src = "https://github.com/LachoCardenas44/GestionAlmacen.VisualParadigm/blob/main/modulos/moduloLachoCardenas44.jpg">)
 <br>
 <br>
 
