@@ -4,11 +4,12 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+
+import Controller.Exeptions.EmptyFieldsExeption;
 import Controller.InternalAgents.Admin;
 import Controller.WareHouse.Warehouse;
 import Model.GuardarCargarDatos;
 import View.Warehouse.FrmStartWarehouse;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -203,7 +204,15 @@ public class PnlToCreateAdmin extends JPanel implements ActionListener{
 
 			} else {
 
-				lblFillAll.setText("Fill all the fields");
+				try {
+
+					throw new EmptyFieldsExeption();
+
+				} catch (EmptyFieldsExeption exc) {
+
+					lblFillAll.setText(exc.getMessage());					
+					
+				}
 				
 			} 
 				

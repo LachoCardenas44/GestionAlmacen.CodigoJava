@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
+
+import Controller.Exeptions.EmptyFieldsExeption;
 import Controller.ExternalAgents.Client;
 import Model.GuardarCargarDatos;
 import View.Warehouse.FrmStartWarehouse;
@@ -31,7 +33,7 @@ public class PnlAddClient extends JPanel implements ActionListener, MouseInputLi
 
         lbName = new JLabel("Name");
         lbId = new JLabel("ID");
-        lblFillAll = new JLabel("Fill all the fields");
+        lblFillAll = new JLabel("");
         textField = new JTextField();
         textField_1 = new JTextField();
         btnDone = new JButton("Done");
@@ -150,7 +152,16 @@ public class PnlAddClient extends JPanel implements ActionListener, MouseInputLi
                 
 			} else {
 
-				lblFillAll.setVisible(true);
+				try {
+
+					throw new EmptyFieldsExeption();
+
+				} catch (EmptyFieldsExeption exc) {
+
+					lblFillAll.setText(exc.getMessage());
+					lblFillAll.setVisible(true);
+					
+				}
 
 			}       
             

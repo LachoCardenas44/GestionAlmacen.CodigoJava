@@ -1,23 +1,22 @@
-package View.Admin;
+package View.Warehouse;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
-
-import Controller.Exeptions.EmptyFieldsExeption;
-import Controller.ExternalAgents.Client;
 import Controller.ExternalAgents.Supplier;
+import Controller.WareHouse.Warehouse;
 import Model.GuardarCargarDatos;
-import View.Warehouse.FrmStartWarehouse;
-
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
-public class PnlAddSupplier extends JPanel implements ActionListener, MouseInputListener{    
 
-    private PnlAgentManagment predecessor;
+public class PnlGetInSupplier extends JPanel implements ActionListener, MouseInputListener, InCheckingSupplierOnSystem{   
+   
     private FrmStartWarehouse pater;    
    
     private JLabel lbName;
@@ -27,19 +26,23 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
 	private JTextField textField;	
 	private JButton btnBack;	
 	private JButton btnDone;
+	private Image image ;
+	private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
+	private ArrayList<Supplier> suppliers = new ArrayList<>(){}; 
 
-    public PnlAddSupplier(FrmStartWarehouse pater, PnlAgentManagment predecessor) {
+    public PnlGetInSupplier(FrmStartWarehouse pater) {        
         
-        this.predecessor = predecessor;
         this.pater = pater;        
 
         lbName = new JLabel("Name");
-        lbId = new JLabel("ID");
+        lbId = new JLabel("First 4 ID Digits");
         lblFillAll = new JLabel("");
         textField = new JTextField();
         textField_1 = new JTextField();
         btnDone = new JButton("Done");
         btnBack = new JButton("Back");
+
+		warehouses = GuardarCargarDatos.LoadObject(warehouses,"src/data/wareh.dat");
         
 
        
@@ -49,7 +52,7 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
 
 		
 		
-		lbName.setBounds(204, 155, 52, 46);		
+		lbName.setBounds(204, 155, 52, 46);
 		lbName.setForeground(new Color(0, 0, 0));
 		lbName.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         add(lbName);
@@ -102,7 +105,7 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
 
 		
 		
-		lbId.setBounds(231, 253, 25, 46);		
+		lbId.setBounds(100, 253, 156, 46);
 		lbId.setForeground(new Color(0, 0, 0));
 		lbId.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         add(lbId);
@@ -121,7 +124,8 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
 		
 		lblFillAll.setForeground(new Color(255, 0, 0));
 		lblFillAll.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		lblFillAll.setBounds(323, 386, 151, 46);
+		lblFillAll.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFillAll.setBounds(231, 386, 334, 46);
         lblFillAll.setVisible(false);
 		add(lblFillAll);
 
@@ -137,6 +141,43 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
         
     }
 
+	public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        try{
+            image = ImageIO.read(new File("src/img/background.jpg")); 
+        }catch(IOException e){
+            System.out.println("La imagen no se encuentra");
+        }
+        
+        g.drawImage(image, 0, 0, null);
+        
+    }
+
+	public boolean isSupplierOnSystem(String name, String digits) {		
+
+		boolean exist = false;
+		
+		for (int i = 0; i < warehouses.size(); i++) {
+
+			suppliers = GuardarCargarDatos.LoadObject(suppliers, "src/data/"+ warehouses.get(i).getName() +"supplier.dat");
+
+			for (int j = 0; j < suppliers.size(); j++) {
+				
+				if (suppliers.get(j).getName().equals(name) 
+				 && suppliers.get(j).getId().substring(0, 4).equals(digits)) {
+					
+					exist = true;
+
+				}
+
+			}
+			
+		}
+
+		return exist;
+
+	}
+
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -147,30 +188,29 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
 		 	 || textField_1.getText().trim().equals(""))) {
 
 
-				predecessor.getSuppliers().add(new Supplier(textField.getText().trim(), textField_1.getText().trim()));
-                GuardarCargarDatos.SaveObject(predecessor.getSuppliers(), "src/data/"+ predecessor.getWarehouses().get(predecessor.getIndex()).getName() +"supplier.dat");
-                pater.ShowAgentManagment(predecessor.getIndex());
+				if (isSupplierOnSystem(textField.getText(), textField_1.getText())) {
+					
+					pater.ShowWarehouseConsultation();
+
+				} else {
+
+					lblFillAll.setText("You don't belong here");
+					lblFillAll.setVisible(true);
+
+				}
 
                 
 			} else {
 
-				try {
-
-					throw new EmptyFieldsExeption();
-
-				} catch (EmptyFieldsExeption exc) {
-
-					lblFillAll.setText(exc.getMessage());
-					lblFillAll.setVisible(true);
-					
-				}
+				lblFillAll.setText("Fill all the fields");
+				lblFillAll.setVisible(true);
 
 			}       
             
 
         } else {
 
-            pater.ShowAgentManagment(predecessor.getIndex());
+            pater.ShowChoice();
             
         }
         
@@ -185,13 +225,9 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
 
 
 	@Override
-	public void mousePressed(java.awt.event.MouseEvent e) {
+	public void mousePressed(java.awt.event.MouseEvent e) {		
 		
-		if (e.getSource() == textField || e.getSource() == textField_1) {
-
-			lblFillAll.setVisible(false);
-			
-		}
+		lblFillAll.setVisible(false);	
 		
 	}
 

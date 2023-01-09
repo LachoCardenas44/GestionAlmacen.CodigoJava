@@ -5,10 +5,12 @@ import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
+
+import Controller.Exeptions.EmptyFieldsExeption;
+import Controller.Exeptions.NotFoundAdminException;
 import Controller.WareHouse.Warehouse;
 import Model.GuardarCargarDatos;
 import View.Warehouse.FrmStartWarehouse;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class PnlLogIn extends JPanel implements ActionListener, MouseInputListener{
+public class PnlLogIn extends JPanel implements ActionListener, MouseInputListener, InCheckingAdminOnSystem{
 
     private FrmStartWarehouse pater;
 	private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
@@ -132,6 +134,25 @@ public class PnlLogIn extends JPanel implements ActionListener, MouseInputListen
 		
 	}
 
+	public int isAdminOnSystem (String name, String password){
+
+		int index = -1;
+
+		   	for (int i = 0; i < warehouses.size(); i++) {				
+
+			   	if (name.equals(warehouses.get(i).getAdmin().getName().trim())
+				 && password.equals(warehouses.get(i).getAdmin().getPassword().trim())) {
+
+				   	index = i;					
+
+			   	} 
+
+		   	}
+
+		return index;
+
+	}
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -140,27 +161,27 @@ public class PnlLogIn extends JPanel implements ActionListener, MouseInputListen
 			if (!(textField.getText().trim().equals("") 
 			|| textField_1.getText().trim().equals(""))) {
 
-		   	int index = -1;
-
-		   	for (int i = 0; i < warehouses.size(); i++) {				
-
-			   	if (textField.getText().trim().equals(warehouses.get(i).getAdmin().getName().trim())) {
-
-				   	index = i;					
-
-			   	} 
-
-		   	}			
+		   	int adminPosition = isAdminOnSystem(textField.getText().trim(), textField_1.getText().trim());			
 			
-		   	if (index != -1) {
+		   	if (isAdminOnSystem(textField.getText().trim(), textField_1.getText().trim()) != -1) {
 
-				pater.setWarehouse(warehouses.get(index).getName());
-			   	pater.ShowWarehouseOptions(index, warehouses);
+				pater.setWarehouse(warehouses.get(adminPosition).getName());
+			   	pater.ShowWarehouseOptions(adminPosition, warehouses);
 				
 		   	} else {
 
-			   	lblFillAll.setBounds(262, 362, 236, 46);
-			   	lblFillAll.setText("You're not in the system");
+				try {
+
+					throw new NotFoundAdminException();
+
+				} catch (NotFoundAdminException exc) {
+					
+					lblFillAll.setBounds(262, 362, 236, 46);
+			   		lblFillAll.setText(exc.getMessage());
+					
+				}
+
+			   	
 				
 		   	}
 
@@ -168,8 +189,17 @@ public class PnlLogIn extends JPanel implements ActionListener, MouseInputListen
 
 	   		} else {
 
-		   		lblFillAll.setBounds(301, 362, 163, 46);
-		   		lblFillAll.setText("Fill all the fields");
+				try {
+
+					throw new EmptyFieldsExeption();
+
+				} catch (EmptyFieldsExeption exc) {
+
+					lblFillAll.setBounds(301, 362, 163, 46);
+					lblFillAll.setText(exc.getMessage());					
+					
+				}		   		
+		   		
 				
 	   		}
 

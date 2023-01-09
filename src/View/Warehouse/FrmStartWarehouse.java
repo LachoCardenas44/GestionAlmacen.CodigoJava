@@ -152,6 +152,14 @@ public class FrmStartWarehouse extends JFrame implements WindowFocusListener,Win
         
     }
 
+    public void ShowGetInSupplier() {
+
+        resetSon();
+        son = new PnlGetInSupplier(this);
+        add(son);
+        
+    }
+
     public void windowGainedFocus(WindowEvent e) {
         setEnabled(true);
     }

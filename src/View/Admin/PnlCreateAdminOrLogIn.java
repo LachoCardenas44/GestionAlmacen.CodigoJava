@@ -3,9 +3,7 @@ package View.Admin;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
-
 import View.Warehouse.FrmStartWarehouse;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

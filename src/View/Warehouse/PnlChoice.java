@@ -109,7 +109,7 @@ public class PnlChoice extends JPanel implements ActionListener{
 		if (e.getSource() == btnSupplier) {
 
 			agent = "Supplier";
-			pater.ShowWareHouseConsultation();
+			pater.ShowGetInSupplier();
 			
 		}
 		

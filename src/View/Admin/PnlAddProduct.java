@@ -5,6 +5,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 
+import Controller.Exeptions.EmptyFieldsExeption;
+import Controller.Exeptions.NotFoundSupplierExeption;
 import Controller.ExternalAgents.Supplier;
 import Controller.ProductsStock.PhisicLocation;
 import Controller.ProductsStock.Product;
@@ -17,7 +19,7 @@ import java.awt.Font;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class PnlAddProduct extends JPanel implements ActionListener, MouseInputListener{
+public class PnlAddProduct extends JPanel implements ActionListener, MouseInputListener, InCheckingSupplierOnWarehouse{
 
     private PnlStock predecessor;
     private FrmStartWarehouse pater;
@@ -376,6 +378,24 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
         
     }
 
+	public boolean isSupplierOnWarehouse (String supplier){
+
+		boolean existSupplier = false;
+
+		for (int i = 0; i < suppliers.size(); i++) {
+
+			if (suppliers.get(i).getName().equalsIgnoreCase(supplier)) {
+
+				existSupplier = true;
+				
+			}
+			
+		}
+
+		return existSupplier;
+
+	}
+
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -389,20 +409,9 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
              || textField_5.getText().trim().equals("")
              || textField_6.getText().trim().equals("")
              || textField_7.getText().trim().equals(""))) {
+				
 
-				boolean existSupplier = false;
-
-				for (int i = 0; i < suppliers.size(); i++) {
-
-					if (suppliers.get(i).getName().equalsIgnoreCase(textField_7.getText().trim())) {
-
-						existSupplier = true;
-						
-					}
-					
-				}
-
-				if (existSupplier) {
+				if (isSupplierOnWarehouse(textField_7.getText().trim())) {
 
 					predecessor.getProducts().add(new Product(textField.getText().trim(), new PhisicLocation(textField_4.getText().trim(), textField_5.getText().trim(), textField_6.getText().trim()), textField_7.getText().trim(), textField_1.getText().trim(), textField_3.getText().trim(), textField_2.getText().trim()));
                 	GuardarCargarDatos.SaveObject(predecessor.getProducts(), "src/data/"+ predecessor.getWarehouses().get(predecessor.getIndex()).getName() +"product.dat");
@@ -410,8 +419,16 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 					
 				} else {
 
-					lblFillAll.setText("this Supplier doesn't exist");
-					lblFillAll.setVisible(true);
+					try {
+
+						throw new NotFoundSupplierExeption();
+						
+					} catch (NotFoundSupplierExeption exc) {
+						
+						lblFillAll.setText(exc.getMessage());
+					    lblFillAll.setVisible(true);
+
+					}					
 
 				}
 
@@ -420,8 +437,16 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
                 
 			} else {
 
-				lblFillAll.setText("Fill all the fields");
-				lblFillAll.setVisible(true);
+				try {
+
+					throw new EmptyFieldsExeption();
+
+				} catch (EmptyFieldsExeption exc) {
+
+					lblFillAll.setText(exc.getMessage());
+					lblFillAll.setVisible(true);
+					
+				}
 
 			}       
             
