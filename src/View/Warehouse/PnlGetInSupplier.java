@@ -163,12 +163,18 @@ public class PnlGetInSupplier extends JPanel implements ActionListener, MouseInp
 
 			for (int j = 0; j < suppliers.size(); j++) {
 				
-				if (suppliers.get(j).getName().equals(name) 
-				 && suppliers.get(j).getId().substring(0, 4).equals(digits)) {
-					
-					exist = true;
+				try {
 
-				}
+					if (suppliers.get(j).getName().equals(name) 
+					 && suppliers.get(j).getId().substring(0, 4).equals(digits)) {
+					
+						exist = true;
+
+					}
+					
+				} catch (Exception e) {
+					
+				}				
 
 			}
 			

@@ -2,8 +2,6 @@ package Controller.ProductsStock;
 
 import java.io.Serializable;
 
-import Controller.ExternalAgents.Supplier;
-
 public class Product implements Serializable{
 
 	private String name;
@@ -11,10 +9,11 @@ public class Product implements Serializable{
 	private String productType;	
 	private String sellPrice;
 	private String cost;
+	private String amount;	
 	private String supplier;
 
 	
-	public Product(String name, PhisicLocation phisicLocation,String supplier, String productType, String sellPrice, String cost) {
+	public Product(String name, PhisicLocation phisicLocation,String supplier, String productType, String sellPrice, String cost, String amount) {
 		
 		this.name=name;
 		this.phisicLocation=phisicLocation;
@@ -22,6 +21,7 @@ public class Product implements Serializable{
 		this.productType=productType;		
 		this.cost=cost;
 		this.sellPrice=sellPrice;
+		this.amount=amount;
 		
 
 	}
@@ -90,6 +90,14 @@ public class Product implements Serializable{
 
 		this.supplier = supplier;
 		
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
 
 }

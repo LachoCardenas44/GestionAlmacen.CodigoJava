@@ -6,6 +6,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 
 import Controller.Exeptions.EmptyFieldsExeption;
+import Controller.Exeptions.ExtraDigitsToIDExeption;
+import Controller.Exeptions.FiewDigitsToIDExeption;
 import Controller.ExternalAgents.Client;
 import Controller.ExternalAgents.Supplier;
 import Model.GuardarCargarDatos;
@@ -146,10 +148,39 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
             if (!(textField.getText().trim().equals("") 
 		 	 || textField_1.getText().trim().equals(""))) {
 
+				if (textField_1.getText().trim().length() < 11) {
 
-				predecessor.getSuppliers().add(new Supplier(textField.getText().trim(), textField_1.getText().trim()));
-                GuardarCargarDatos.SaveObject(predecessor.getSuppliers(), "src/data/"+ predecessor.getWarehouses().get(predecessor.getIndex()).getName() +"supplier.dat");
-                pater.ShowAgentManagment(predecessor.getIndex());
+					try {
+
+						throw new FiewDigitsToIDExeption();
+
+					} catch (FiewDigitsToIDExeption exc) {
+						
+						lblFillAll.setText(exc.getMessage());
+						lblFillAll.setVisible(true);
+						
+					}
+					
+				} else if (textField_1.getText().trim().length() > 11) {
+
+					try {
+
+						throw new ExtraDigitsToIDExeption();
+
+					} catch (ExtraDigitsToIDExeption exc) {
+
+						lblFillAll.setText(exc.getMessage());
+						lblFillAll.setVisible(true);
+						
+					}
+					
+				} else {
+
+					predecessor.getSuppliers().add(new Supplier(textField.getText().trim(), textField_1.getText().trim()));
+                	GuardarCargarDatos.SaveObject(predecessor.getSuppliers(), "src/data/"+ predecessor.getWarehouses().get(predecessor.getIndex()).getName() +"supplier.dat");
+                	pater.ShowAgentManagment(predecessor.getIndex());
+					
+				}			
 
                 
 			} else {

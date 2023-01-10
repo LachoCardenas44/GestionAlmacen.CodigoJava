@@ -38,6 +38,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 	private JLabel lblProductType;
 	private JLabel lbCost;
 	private JLabel lbSellPrice;
+	private JLabel lblAmount;
 	private JLabel lbShelf;
 	private JLabel lbHall;
 	private JLabel lbHigh;
@@ -46,6 +47,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 	private JTextField textField_6;
 	private JLabel lblSupplier_1;
 	private JTextField textField_7;
+	private JTextField textField_8;
 	private JSeparator separator;
 	private JSeparator separator_1;
     
@@ -64,6 +66,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
         textField_5 = new JTextField();
         textField_6 = new JTextField();
         textField_7 = new JTextField();
+		textField_8 = new JTextField();
         btnBack = new JButton("Back");
         btnDone = new JButton("Done");
         lblFillAll = new JLabel("Fill all the fields");
@@ -71,6 +74,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
         lblProductType = new JLabel(" Product Type:");
         lbCost = new JLabel("Cost:");
         lbSellPrice = new JLabel("Sell Price:");
+		lblAmount = new JLabel("Amount:");
         lbShelf = new JLabel("Shelf:");
         lbHall = new JLabel("Hall:");
         lbHigh = new JLabel("High:");
@@ -78,7 +82,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
         separator = new JSeparator();
         separator_1 = new JSeparator();
 
-		suppliers = GuardarCargarDatos.LoadObject(suppliers, "src/data/"+ warehouses.get(index).getName() +"supplier.dat");
+		suppliers = GuardarCargarDatos.LoadObject(suppliers, "src/data/"+warehouses.get(index).getName() +"supplier.dat");
 
         setBackground(new Color(52, 52, 52));		
 		setLayout(null);
@@ -249,6 +253,15 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 		lbSellPrice.setBorder(null);
 		lbSellPrice.setBounds(66, 237, 99, 46);
 		add(lbSellPrice);
+
+
+
+		
+		lblAmount.setForeground(new Color(153, 153, 153));
+		lblAmount.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		lblAmount.setBorder(null);
+		lblAmount.setBounds(82, 294, 83, 46);
+		add(lblAmount);
 		
 
 
@@ -332,7 +345,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 		lblSupplier_1.setForeground(Color.WHITE);
 		lblSupplier_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		lblSupplier_1.setBorder(null);
-		lblSupplier_1.setBounds(127, 344, 119, 46);
+		lblSupplier_1.setBounds(128, 381, 119, 46);
 		add(lblSupplier_1);
 		
 
@@ -342,7 +355,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 		textField_7.setFont(new Font("Comic Sans MS", Font.ITALIC, 20));
 		textField_7.setColumns(10);
 		textField_7.setBorder(new LineBorder(new Color(128, 128, 128)));
-		textField_7.setBounds(283, 347, 387, 40);
+		textField_7.setBounds(286, 387, 387, 40);
         textField_7.addKeyListener(new KeyAdapter(){
 			public void keyTyped(KeyEvent e) {				
 
@@ -361,18 +374,41 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 		add(textField_7);
 
 
+
+		textField_8 = new JTextField();
+		textField_8.setForeground(new Color(114, 114, 114));
+		textField_8.setFont(new Font("Comic Sans MS", Font.ITALIC, 20));
+		textField_8.setColumns(10);
+		textField_8.setBorder(new LineBorder(new Color(128, 128, 128)));
+		textField_8.setBounds(190, 302, 221, 40);
+		textField_8.addKeyListener(new KeyAdapter(){
+			public void keyTyped(KeyEvent e) {				
+
+				if (!Character.isDigit(e.getKeyChar())) {
+
+					e.consume();
+					
+				}
+				
+
+			}
+		});
+		textField_6.addMouseListener(this);
+		add(textField_8);
+
+
 		
 		
 		separator.setForeground(new Color(192, 192, 192));
 		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(436, 44, 7, 270);
+		separator.setBounds(430, 36, 11, 323);
 		add(separator);
 
 
 
 		
 		separator_1.setForeground(new Color(192, 192, 192));
-		separator_1.setBounds(26, 315, 731, 18);
+		separator_1.setBounds(26, 359, 731, 11);
 		add(separator_1);
         
         
@@ -413,7 +449,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 
 				if (isSupplierOnWarehouse(textField_7.getText().trim())) {
 
-					predecessor.getProducts().add(new Product(textField.getText().trim(), new PhisicLocation(textField_4.getText().trim(), textField_5.getText().trim(), textField_6.getText().trim()), textField_7.getText().trim(), textField_1.getText().trim(), textField_3.getText().trim(), textField_2.getText().trim()));
+					predecessor.getProducts().add(new Product(textField.getText().trim(), new PhisicLocation(textField_4.getText().trim(), textField_5.getText().trim(), textField_6.getText().trim()), textField_7.getText().trim(), textField_1.getText().trim(), textField_3.getText().trim(), textField_2.getText().trim(), textField_8.getText().trim()));
                 	GuardarCargarDatos.SaveObject(predecessor.getProducts(), "src/data/"+ predecessor.getWarehouses().get(predecessor.getIndex()).getName() +"product.dat");
                 	pater.ShowStock(predecessor.getIndex());
 					

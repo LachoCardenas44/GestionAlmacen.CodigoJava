@@ -41,6 +41,8 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
     private JLabel lbHighValue;
 	private JLabel lblSupplier;
 	private JLabel lbSupplierName;
+	private JLabel lblAmount;
+	private JLabel lbAmountValue;
     private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
     private ArrayList<Product> products = new ArrayList<>(){};	
 
@@ -70,6 +72,8 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
         lbHighValue = new JLabel("...");
 		lblSupplier = new JLabel("Supplier");
 		lbSupplierName = new JLabel("...");
+		lblAmount = new JLabel("Amount:");
+		lbAmountValue = new JLabel("...");
 
         warehouses = GuardarCargarDatos.LoadObject(warehouses,"src/data/wareh.dat");
         products = GuardarCargarDatos.LoadObject(products,"src/data/"+ warehouses.get(index).getName() +"product.dat");
@@ -138,7 +142,7 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 			lbProductType.setBorder(null);
 			lbProductType.setForeground(new Color(153, 153, 153));
 			lbProductType.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-			lbProductType.setBounds(363, 107, 146, 46);
+			lbProductType.setBounds(363, 107, 146, 36);
 			add(lbProductType);
 
 
@@ -147,7 +151,7 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 			lbCost.setForeground(new Color(153, 153, 153));
 			lbCost.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 			lbCost.setBorder(null);
-			lbCost.setBounds(449, 164, 60, 46);
+			lbCost.setBounds(449, 154, 60, 36);
 			add(lbCost);
 
 
@@ -156,7 +160,7 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 			lbSellPrice.setForeground(new Color(153, 153, 153));
 			lbSellPrice.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 			lbSellPrice.setBorder(null);
-			lbSellPrice.setBounds(405, 221, 104, 46);
+			lbSellPrice.setBounds(407, 201, 104, 36);
 			add(lbSellPrice);
 
 
@@ -166,7 +170,7 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 			lblProductTypeValue.setForeground(new Color(204, 204, 204));
 			lblProductTypeValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 			lblProductTypeValue.setBorder(new LineBorder(new Color(153, 153, 153), 2));
-			lblProductTypeValue.setBounds(519, 107, 172, 46);
+			lblProductTypeValue.setBounds(519, 107, 172, 36);
 			add(lblProductTypeValue);
 
 
@@ -176,7 +180,7 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 			lbCostValue.setForeground(new Color(204, 204, 204));
 			lbCostValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 			lbCostValue.setBorder(new LineBorder(new Color(153, 153, 153), 2));
-			lbCostValue.setBounds(519, 164, 172, 46);
+			lbCostValue.setBounds(519, 154, 172, 36);
 			add(lbCostValue);
 
 
@@ -186,7 +190,7 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 			lbSellPriceValue.setForeground(new Color(204, 204, 204));
 			lbSellPriceValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 			lbSellPriceValue.setBorder(new LineBorder(new Color(153, 153, 153), 2));
-			lbSellPriceValue.setBounds(519, 221, 172, 46);
+			lbSellPriceValue.setBounds(519, 201, 172, 36);
 			add(lbSellPriceValue);
 
 
@@ -279,6 +283,23 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 			add(lbSupplierName);
 
 
+
+			
+			lblAmount.setForeground(new Color(153, 153, 153));
+			lblAmount.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+			lblAmount.setBorder(null);
+			lblAmount.setBounds(428, 246, 81, 36);
+			add(lblAmount);
+		
+			
+			lbAmountValue.setHorizontalAlignment(SwingConstants.CENTER);
+			lbAmountValue.setForeground(new Color(204, 204, 204));
+			lbAmountValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+			lbAmountValue.setBorder(new LineBorder(new Color(153, 153, 153), 2));
+			lbAmountValue.setBounds(519, 246, 172, 36);
+			add(lbAmountValue);
+
+
 		} else {
 
 			list.setBackground(new Color(192, 192, 192));
@@ -337,6 +358,22 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 			lbSellPriceValue.setBorder(new LineBorder(new Color(153, 153, 153), 2));
 			lbSellPriceValue.setBounds(519, 221, 172, 46);
 			add(lbSellPriceValue);
+
+
+
+			lblAmount.setForeground(new Color(153, 153, 153));
+			lblAmount.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+			lblAmount.setBorder(null);
+			lblAmount.setBounds(428, 246, 81, 36);
+			add(lblAmount);
+		
+			
+			lbAmountValue.setHorizontalAlignment(SwingConstants.CENTER);
+			lbAmountValue.setForeground(new Color(153, 153, 153));
+			lbAmountValue.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+			lbAmountValue.setBorder(new LineBorder(new Color(153, 153, 153), 2));
+			lbAmountValue.setBounds(519, 246, 172, 36);
+			add(lbAmountValue);
 			
 		}	
 
@@ -406,6 +443,7 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 			lbHallValue.setText(products.get(list.getSelectedIndex()).getPhisicLocation().getHall());
 			lbCostValue.setText(products.get(list.getSelectedIndex()).getCost());
 			lbSupplierName.setText(products.get(list.getSelectedIndex()).getSupplier());
+			lbAmountValue.setText(products.get(list.getSelectedIndex()).getAmount());
 
 		}	
 		
