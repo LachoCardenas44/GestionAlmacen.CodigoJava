@@ -19,7 +19,7 @@ import java.awt.Font;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class PnlAddProduct extends JPanel implements ActionListener, MouseInputListener, InCheckingSupplierOnWarehouse{
+public class PnlAddProduct extends JPanel implements ActionListener, MouseInputListener, InCheckSupplierOnWarehouse{
 
     private PnlStock predecessor;
     private FrmStartWarehouse pater;

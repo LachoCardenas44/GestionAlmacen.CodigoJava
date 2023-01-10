@@ -1,6 +1,6 @@
 package View.Admin;
 
-public interface InCheckingSupplierOnWarehouse {
+public interface InCheckSupplierOnWarehouse {
 
     boolean isSupplierOnWarehouse (String supplier);
     

@@ -1,6 +1,6 @@
 package View.Warehouse;
 
-public interface InCheckingSupplierOnSystem {
+public interface InCheckSupplierOnSystem {
 
     boolean isSupplierOnSystem(String name, String digits);
     

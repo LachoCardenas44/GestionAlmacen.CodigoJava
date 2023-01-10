@@ -1,6 +1,6 @@
 package View.Admin;
 
-public interface InCheckingAdminOnSystem {
+public interface InCheckAdminOnSystem {
     
     int isAdminOnSystem (String name, String password);
 

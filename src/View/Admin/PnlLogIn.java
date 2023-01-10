@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class PnlLogIn extends JPanel implements ActionListener, MouseInputListener, InCheckingAdminOnSystem{
+public class PnlLogIn extends JPanel implements ActionListener, MouseInputListener, InCheckAdminOnSystem{
 
     private FrmStartWarehouse pater;
 	private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
@@ -98,21 +98,24 @@ public class PnlLogIn extends JPanel implements ActionListener, MouseInputListen
 		
 		
 		
+		
 		lblFillAll.setForeground(new Color(255, 0, 0));
 		lblFillAll.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		lblFillAll.setBounds(301, 362, 163, 46);
+		lblFillAll.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFillAll.setBounds(276, 362, 236, 46);
 	    add(lblFillAll);
 		
 		
 		btnNext.setForeground(new Color(255, 255, 255));
 		btnNext.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
 		btnNext.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(128, 128, 128), new Color(128, 128, 128), new Color(128, 128, 128), new Color(128, 128, 128)));
-		btnNext.setBackground(new Color(52, 52, 52));		
-		btnNext.setBounds(291, 419, 173, 61);		
+		btnNext.setBackground(new Color(52, 52, 52));
+		btnNext.setBounds(306, 419, 173, 61);
 		btnNext.addActionListener(this);
 		add(btnNext);
 
 		btnBack.setForeground(Color.LIGHT_GRAY);
+		btnBack.setHorizontalAlignment(SwingConstants.CENTER);
 		btnBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
 		btnBack.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(128, 128, 128), new Color(128, 128, 128), new Color(128, 128, 128), new Color(128, 128, 128)));
 		btnBack.setBackground(new Color(52, 52, 52));
@@ -174,9 +177,8 @@ public class PnlLogIn extends JPanel implements ActionListener, MouseInputListen
 
 					throw new NotFoundAdminException();
 
-				} catch (NotFoundAdminException exc) {
+				} catch (NotFoundAdminException exc) {					
 					
-					lblFillAll.setBounds(262, 362, 236, 46);
 			   		lblFillAll.setText(exc.getMessage());
 					
 				}
@@ -194,8 +196,7 @@ public class PnlLogIn extends JPanel implements ActionListener, MouseInputListen
 					throw new EmptyFieldsExeption();
 
 				} catch (EmptyFieldsExeption exc) {
-
-					lblFillAll.setBounds(301, 362, 163, 46);
+					
 					lblFillAll.setText(exc.getMessage());					
 					
 				}		   		

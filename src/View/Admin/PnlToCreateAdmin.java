@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 
 
-public class PnlToCreateAdmin extends JPanel implements ActionListener{   
+public class PnlToCreateAdmin extends JPanel implements ActionListener, InCheckWarehouseOnSystem{   
 
     private FrmStartWarehouse pater;	
 	private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
@@ -54,6 +54,8 @@ public class PnlToCreateAdmin extends JPanel implements ActionListener{
         btnNext = new JButton("Next");
 		btnBack = new JButton("Back");
 		lblFillAll = new JLabel("");
+
+		warehouses = GuardarCargarDatos.LoadObject(warehouses, "src/data/wareh.dat");
         
 
         setBounds(0, 0, 784, 561);
@@ -146,7 +148,8 @@ public class PnlToCreateAdmin extends JPanel implements ActionListener{
 		
 		lblFillAll.setForeground(new Color(255, 0, 0));
 		lblFillAll.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		lblFillAll.setBounds(301, 362, 163, 46);
+		lblFillAll.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFillAll.setBounds(198, 371, 380, 46);
 	    add(lblFillAll);
 		
 		
@@ -154,12 +157,13 @@ public class PnlToCreateAdmin extends JPanel implements ActionListener{
 		btnNext.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
 		btnNext.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(128, 128, 128), new Color(128, 128, 128), new Color(128, 128, 128), new Color(128, 128, 128)));
 		btnNext.setBackground(new Color(52, 52, 52));		
-		btnNext.setBounds(291, 419, 173, 61);
+		btnNext.setBounds(304, 419, 173, 61);
 		btnNext.addActionListener(this);
 		add(btnNext);
 
 		
 		btnBack.setForeground(Color.LIGHT_GRAY);
+		btnBack.setHorizontalAlignment(SwingConstants.CENTER);
 		btnBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
 		btnBack.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(128, 128, 128), new Color(128, 128, 128), new Color(128, 128, 128), new Color(128, 128, 128)));
 		btnBack.setBackground(new Color(52, 52, 52));
@@ -167,7 +171,7 @@ public class PnlToCreateAdmin extends JPanel implements ActionListener{
 		btnBack.addActionListener(this);
 		add(btnBack);
 
-    }
+    }	
 
 	public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -182,25 +186,48 @@ public class PnlToCreateAdmin extends JPanel implements ActionListener{
         
     }
 
+	@Override
+	public boolean isWarehouseOnSystem(String name, String address) {
+		
+		boolean existWare = false;
+
+		for (int i = 0; i < warehouses.size(); i++) {
+
+			if (warehouses.get(i).getName().equals(name) && warehouses.get(i).getAddress().equals(address)) {
+				
+				existWare = true;
+
+			}
+			
+		}
+
+		return existWare;
+	}
+
     @Override
     public void actionPerformed(ActionEvent e) {		
 
-		if (e.getSource() == btnNext) {
-
-			warehouses = GuardarCargarDatos.LoadObject(warehouses, "src/data/wareh.dat");
+		if (e.getSource() == btnNext) {			
 
 			if (!(textField.getText().trim().equals("") 
 		 	 || textField_1.getText().trim().equals("") 
 		 	 || textField_2.getText().trim().equals("")
 		 	 || textField_3.getText().trim().equals(""))) {
 
+				if (isWarehouseOnSystem(textField_2.getText().trim(), textField_3.getText().trim())) {
 
-				warehouses.add(new Warehouse(textField_2.getText().trim(),textField_3.getText().trim(), new Admin(textField.getText().trim(), textField_1.getText().trim())));
-				GuardarCargarDatos.SaveObject(warehouses, "src/data/wareh.dat");	
-				System.out.println(warehouses.size());
-				pater.setWarehouse(textField_2.getText().trim());
+					lblFillAll.setText("This warehouse already exist");
+					
+				} else {
 
-				pater.ShowWarehouseOptions(warehouses.size()-1, warehouses);
+					warehouses.add(new Warehouse(textField_2.getText().trim(),textField_3.getText().trim(), new Admin(textField.getText().trim(), textField_1.getText().trim())));
+					GuardarCargarDatos.SaveObject(warehouses, "src/data/wareh.dat");	
+					System.out.println(warehouses.size());
+					pater.setWarehouse(textField_2.getText().trim());
+
+					pater.ShowWarehouseOptions(warehouses.size()-1, warehouses);
+
+				}				
 
 			} else {
 
@@ -225,5 +252,6 @@ public class PnlToCreateAdmin extends JPanel implements ActionListener{
 
         
     }
+	
     
 }

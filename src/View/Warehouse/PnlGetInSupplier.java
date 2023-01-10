@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class PnlGetInSupplier extends JPanel implements ActionListener, MouseInputListener, InCheckingSupplierOnSystem{   
+public class PnlGetInSupplier extends JPanel implements ActionListener, MouseInputListener, InCheckSupplierOnSystem{   
    
     private FrmStartWarehouse pater;    
    
