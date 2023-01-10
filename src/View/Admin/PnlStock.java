@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.border.*;
 import javax.swing.event.MouseInputListener;
 import Controller.ProductsStock.Product;
-import Controller.WareHouse.Warehouse;
+import Controller.WareHouse.WareHouse;
 import Model.GuardarCargarDatos;
 import View.Warehouse.FrmStartWarehouse;
 import View.Warehouse.PnlChoice;
@@ -43,7 +43,7 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 	private JLabel lbSupplierName;
 	private JLabel lblAmount;
 	private JLabel lbAmountValue;
-    private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
+    private ArrayList<WareHouse> warehouses = new ArrayList<>(){};
     private ArrayList<Product> products = new ArrayList<>(){};	
 
 	public PnlStock(FrmStartWarehouse pater, int index) {
@@ -388,7 +388,7 @@ public class PnlStock extends JPanel implements ActionListener, MouseInputListen
 		this.products = products;
 	}
 
-	public ArrayList<Warehouse> getWarehouses() {
+	public ArrayList<WareHouse> getWarehouses() {
         return warehouses;
     }
 

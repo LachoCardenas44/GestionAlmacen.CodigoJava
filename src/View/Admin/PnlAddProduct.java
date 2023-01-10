@@ -5,12 +5,12 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 
-import Controller.Exeptions.EmptyFieldsExeption;
-import Controller.Exeptions.NotFoundSupplierExeption;
+import Controller.Exceptions.EmptyFieldsException;
+import Controller.Exceptions.NotFoundSupplierException;
 import Controller.ExternalAgents.Supplier;
 import Controller.ProductsStock.PhisicLocation;
 import Controller.ProductsStock.Product;
-import Controller.WareHouse.Warehouse;
+import Controller.WareHouse.WareHouse;
 import Model.GuardarCargarDatos;
 import View.Warehouse.FrmStartWarehouse;
 
@@ -24,7 +24,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
     private PnlStock predecessor;
     private FrmStartWarehouse pater;
 	private int index;
-	private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
+	private ArrayList<WareHouse> warehouses = new ArrayList<>(){};
 	private ArrayList<Supplier> suppliers = new ArrayList<>(){}; 
     
 	private JTextField textField;	
@@ -51,7 +51,7 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 	private JSeparator separator;
 	private JSeparator separator_1;
     
-    public PnlAddProduct(FrmStartWarehouse pater, PnlStock predecessor, ArrayList<Warehouse> warehouses, int index) {
+    public PnlAddProduct(FrmStartWarehouse pater, PnlStock predecessor, ArrayList<WareHouse> warehouses, int index) {
 
         this.predecessor = predecessor;
         this.pater = pater;
@@ -457,9 +457,9 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 
 					try {
 
-						throw new NotFoundSupplierExeption();
+						throw new NotFoundSupplierException();
 						
-					} catch (NotFoundSupplierExeption exc) {
+					} catch (NotFoundSupplierException exc) {
 						
 						lblFillAll.setText(exc.getMessage());
 					    lblFillAll.setVisible(true);
@@ -475,9 +475,9 @@ public class PnlAddProduct extends JPanel implements ActionListener, MouseInputL
 
 				try {
 
-					throw new EmptyFieldsExeption();
+					throw new EmptyFieldsException();
 
-				} catch (EmptyFieldsExeption exc) {
+				} catch (EmptyFieldsException exc) {
 
 					lblFillAll.setText(exc.getMessage());
 					lblFillAll.setVisible(true);

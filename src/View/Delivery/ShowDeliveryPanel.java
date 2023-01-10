@@ -15,6 +15,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.security.Guard;
+
+import Controller.ExternalAgents.Client;
 import Controller.InOutOperations.Delivery;
 
 public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseListener{
@@ -39,6 +42,8 @@ public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseLi
     private FrmStartWarehouse grandpa;
     private Image image;
     private int index=-1;
+    private ArrayList<Client> clients = new ArrayList<>();
+    String clientDataPath = "";
     
 
     public ShowDeliveryPanel (DeliveryWindow daddy,FrmStartWarehouse grandpa){
@@ -51,7 +56,7 @@ public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseLi
     public void anitComponents(){
 
         
-
+        clientDataPath = "src/data/"+grandpa.getWarehouse()+"client.dat";
         jScrollPane2 = new JScrollPane();
         pTable = new JTable();
         transpL = new JLabel();
@@ -62,7 +67,7 @@ public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseLi
         disF = new JTextField();
 
         
-
+        clients = GuardarCargarDatos.LoadObject(clients, clientDataPath);
         deliveries = GuardarCargarDatos.LoadObject(deliveries, "src/data/"+grandpa.getWarehouse()+"delivery.dat");
         
         headerL = new JLabel("Delivery List");
@@ -118,7 +123,7 @@ public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseLi
         });
         for(int i = 0;i<deliveries.size();i++){
             table.setValueAt(deliveries.get(i).getClient(), i, 0);
-            table.setValueAt(deliveries.get(i).DeliveryCost(),i,1);
+            table.setValueAt(deliveries.get(i).CalculatedCost(),i,1);
         }
         table.setBackground(new Color(242,242,242));
         table.addMouseListener(this);
@@ -153,13 +158,18 @@ public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseLi
             newDeliveryB.setVisible(false);
             backB.setBounds(150, 420, 470, 30);
         }
+        
     }
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==backB){
         grandpa.toFront();
         daddy.dispose();
         }else if(e.getSource()==newDeliveryB){
+            if(clients.size()==0){
+
+            }else{
             daddy.ChangePanel(new NewDeliveryPanel(daddy,grandpa));
+            }    
         }else if(e.getSource()==deleteB){
             if(index!=-1){
             deliveries.remove(index);
@@ -174,6 +184,7 @@ public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseLi
                 }
             });
             }
+            GuardarCargarDatos.SaveObject(deliveries, "src/data/"+grandpa.getWarehouse()+"delivery.dat");
         }
         
     }
@@ -186,7 +197,7 @@ public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseLi
         });
         for(int i = 0;i<deliveries.size();i++){
             table.setValueAt(deliveries.get(i).getClient(), i, 0);
-            table.setValueAt(deliveries.get(i).DeliveryCost(),i,1);
+            table.setValueAt(deliveries.get(i).CalculatedCost(),i,1);
         }
     }
     public void LoadTable(){
@@ -213,6 +224,10 @@ public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseLi
     }
     
     public void mouseClicked(MouseEvent e) {
+        
+    }
+    
+    public void mousePressed(MouseEvent e) {
         if(e.getSource()==table){
             Point point = e.getPoint();
             this.index=table.rowAtPoint(point);
@@ -223,10 +238,6 @@ public  class ShowDeliveryPanel extends JPanel implements ActionListener,MouseLi
             setSize(getWidth()+1,getHeight()+1);
             setSize(getWidth()-1,getHeight()-1);
         }
-    }
-    
-    public void mousePressed(MouseEvent e) {
-        
         
     }
    

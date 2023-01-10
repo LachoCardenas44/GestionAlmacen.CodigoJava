@@ -1,4 +1,4 @@
-package Controller.Exeptions;
+package Controller.Exceptions;
 
 public class FiewDigitsToIDExeption extends Exception{
 

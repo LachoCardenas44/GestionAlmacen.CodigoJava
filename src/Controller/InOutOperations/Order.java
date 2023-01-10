@@ -1,11 +1,9 @@
 package Controller.InOutOperations;
 
 import java.io.Serializable;
-
 import Controller.ProductsStock.*;
 
-public class Order implements Serializable{
-
+public class Order implements Serializable, TotalCostInterface{
 
 	private Product product;
 	private int minAmount;
@@ -52,7 +50,7 @@ public class Order implements Serializable{
 	}
 
 
-	public double OrderCost() {
+	public double CalculatedCost() {
 		
 		return Integer.parseInt(product.getCost())*amount;
 		

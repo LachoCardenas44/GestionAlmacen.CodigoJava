@@ -2,7 +2,6 @@ package View.Warehouse;
 
 
 import java.awt.*;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;

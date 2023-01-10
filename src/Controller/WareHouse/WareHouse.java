@@ -4,13 +4,13 @@ import java.io.Serializable;
 import Controller.ExternalAgents.*;
 import Controller.InternalAgents.Admin;
 
-public class Warehouse implements Serializable{
+public class WareHouse implements Serializable{
 
     private String name;
     private Admin admin;
     private String address;
 
-    public Warehouse (String name,String address,Admin admin) {
+    public WareHouse (String name,String address,Admin admin) {
         this.name=name;
         this.address=address;
         this.admin=admin;

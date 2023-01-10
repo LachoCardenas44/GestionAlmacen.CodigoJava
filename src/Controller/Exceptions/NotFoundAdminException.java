@@ -1,6 +1,6 @@
-package Controller.Exeptions;
+package Controller.Exceptions;
 
-public class NotFoundAdminException extends Exception{
+public class NotFoundAdminException extends ElementNotFoundException{
 
     public NotFoundAdminException() {
         super("You're not in the system");

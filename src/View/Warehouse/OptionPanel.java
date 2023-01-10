@@ -20,7 +20,7 @@ public class OptionPanel extends JPanel implements ActionListener {
     private JButton orderButton;
     private JButton infoB;
     private FrmStartWarehouse daddy;
-    private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
+    private ArrayList<WareHouse> warehouses = new ArrayList<>(){};
     private int indexx ;
     private Image delivery;
     private Image order;

@@ -4,12 +4,10 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
-
-import Controller.Exeptions.EmptyFieldsExeption;
+import Controller.Exceptions.EmptyFieldsException;
 import Controller.ExternalAgents.Client;
 import Model.GuardarCargarDatos;
 import View.Warehouse.FrmStartWarehouse;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
@@ -154,9 +152,9 @@ public class PnlAddClient extends JPanel implements ActionListener, MouseInputLi
 
 				try {
 
-					throw new EmptyFieldsExeption();
+					throw new EmptyFieldsException();
 
-				} catch (EmptyFieldsExeption exc) {
+				} catch (EmptyFieldsException exc) {
 
 					lblFillAll.setText(exc.getMessage());
 					lblFillAll.setVisible(true);

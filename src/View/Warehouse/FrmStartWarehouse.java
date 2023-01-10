@@ -3,7 +3,7 @@ package View.Warehouse;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
-import Controller.WareHouse.Warehouse;
+import Controller.WareHouse.WareHouse;
 import View.Admin.PnlAddClient;
 import View.Admin.PnlAddProduct;
 import View.Admin.PnlAddSupplier;
@@ -87,7 +87,7 @@ public class FrmStartWarehouse extends JFrame implements WindowFocusListener,Win
         
     }
 
-    public void ShowWarehouseOptions(int index, ArrayList<Warehouse> warehouses) {
+    public void ShowWarehouseOptions(int index, ArrayList<WareHouse> warehouses) {
 
         resetSon();
         son = new OptionPanel(this,index);
@@ -144,7 +144,7 @@ public class FrmStartWarehouse extends JFrame implements WindowFocusListener,Win
         
     }
 
-    public void ShowAddProduct(PnlStock panel, ArrayList<Warehouse> warehouses, int index) {
+    public void ShowAddProduct(PnlStock panel, ArrayList<WareHouse> warehouses, int index) {
 
         resetSon();
         son = new PnlAddProduct(this, panel, warehouses, index);

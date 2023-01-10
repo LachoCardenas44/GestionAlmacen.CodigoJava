@@ -1,10 +1,9 @@
 package Controller.InOutOperations;
 
-import Controller.ProductsStock.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Delivery implements Serializable {
+public class Delivery implements Serializable, TotalCostInterface {
     
     private ArrayList<Order> orderList;
     private double transportationCost;
@@ -52,7 +51,7 @@ public class Delivery implements Serializable {
     public String getClient(){
         return client;
     }
-    public double DeliveryCost(){
+    public double CalculatedCost(){
         double totalCost = 0;
         for(int i = 0;i<orderList.size();i++){
            totalCost += orderList.get(i).getAmount()*Integer.parseInt(orderList.get(i).getProduct().getSellPrice());

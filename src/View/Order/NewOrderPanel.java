@@ -134,9 +134,7 @@ public class NewOrderPanel extends JPanel implements ActionListener{
                     daddy.ChangePanel(new ShowOrderPanel(daddy, grandpa));
                 }else if(amoF.getText().isEmpty() || prodF.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please fill all the blanks", "Warning", JOptionPane.WARNING_MESSAGE);
-                }else{
-            JOptionPane.showMessageDialog(null, "The product you want to buy needs to be log in the system,"+"\n"+"please go to stock options and log the product first", "Warning", JOptionPane.WARNING_MESSAGE);
-                }      
+                }else{}      
         
              }
         }

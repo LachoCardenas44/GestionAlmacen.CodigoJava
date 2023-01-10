@@ -5,9 +5,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 
-import Controller.Exeptions.EmptyFieldsExeption;
-import Controller.Exeptions.ExtraDigitsToIDExeption;
-import Controller.Exeptions.FiewDigitsToIDExeption;
+import Controller.Exceptions.EmptyFieldsException;
+import Controller.Exceptions.ExtraDigitsToIDException;
+import Controller.Exceptions.FiewDigitsToIDExeption;
 import Controller.ExternalAgents.Client;
 import Controller.ExternalAgents.Supplier;
 import Model.GuardarCargarDatos;
@@ -165,9 +165,9 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
 
 					try {
 
-						throw new ExtraDigitsToIDExeption();
+						throw new ExtraDigitsToIDException();
 
-					} catch (ExtraDigitsToIDExeption exc) {
+					} catch (ExtraDigitsToIDException exc) {
 
 						lblFillAll.setText(exc.getMessage());
 						lblFillAll.setVisible(true);
@@ -187,9 +187,9 @@ public class PnlAddSupplier extends JPanel implements ActionListener, MouseInput
 
 				try {
 
-					throw new EmptyFieldsExeption();
+					throw new EmptyFieldsException();
 
-				} catch (EmptyFieldsExeption exc) {
+				} catch (EmptyFieldsException exc) {
 
 					lblFillAll.setText(exc.getMessage());
 					lblFillAll.setVisible(true);

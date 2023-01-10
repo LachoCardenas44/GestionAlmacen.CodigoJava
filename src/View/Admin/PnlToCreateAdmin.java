@@ -5,9 +5,9 @@ import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 
-import Controller.Exeptions.EmptyFieldsExeption;
+import Controller.Exceptions.EmptyFieldsException;
 import Controller.InternalAgents.Admin;
-import Controller.WareHouse.Warehouse;
+import Controller.WareHouse.WareHouse;
 import Model.GuardarCargarDatos;
 import View.Warehouse.FrmStartWarehouse;
 import javax.imageio.ImageIO;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class PnlToCreateAdmin extends JPanel implements ActionListener, InCheckWarehouseOnSystem{   
 
     private FrmStartWarehouse pater;	
-	private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
+	private ArrayList<WareHouse> warehouses = new ArrayList<>(){};
 	Image image;
 
     JLabel lbName;
@@ -220,7 +220,7 @@ public class PnlToCreateAdmin extends JPanel implements ActionListener, InCheckW
 					
 				} else {
 
-					warehouses.add(new Warehouse(textField_2.getText().trim(),textField_3.getText().trim(), new Admin(textField.getText().trim(), textField_1.getText().trim())));
+					warehouses.add(new WareHouse(textField_2.getText().trim(),textField_3.getText().trim(), new Admin(textField.getText().trim(), textField_1.getText().trim())));
 					GuardarCargarDatos.SaveObject(warehouses, "src/data/wareh.dat");	
 					System.out.println(warehouses.size());
 					pater.setWarehouse(textField_2.getText().trim());
@@ -233,9 +233,9 @@ public class PnlToCreateAdmin extends JPanel implements ActionListener, InCheckW
 
 				try {
 
-					throw new EmptyFieldsExeption();
+					throw new EmptyFieldsException();
 
-				} catch (EmptyFieldsExeption exc) {
+				} catch (EmptyFieldsException exc) {
 
 					lblFillAll.setText(exc.getMessage());					
 					

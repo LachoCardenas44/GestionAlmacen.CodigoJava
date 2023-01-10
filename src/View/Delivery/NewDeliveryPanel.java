@@ -306,15 +306,32 @@ public  class NewDeliveryPanel extends JPanel implements ActionListener, MouseLi
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==addProductB){
             int num1 = 0;
+            int cont = 0;
             for(int j = 0;j<amountF.getText().length();j++){
                 num1 = (num1*10)+(int)amountF.getText().charAt(j)-48;
                 
             }
              for(int i = 0; i < products.size();i++){
                 
-                if(amountF.getText().isEmpty()==false && productF.getText().trim().equalsIgnoreCase(products.get(i).getName().trim())){                 
-                orders.add(new Order(products.get(i),num1,true));
-                ReloadTable();
+                if(amountF.getText().isEmpty()==false && productF.getText().trim().equalsIgnoreCase(products.get(i).getName().trim()) && num1<=Integer.parseInt(products.get(i).getAmount())){  
+                    
+                    for(int j = 0 ;j<orders.size();j++){
+
+                        if(productF.getText().trim().equalsIgnoreCase(orders.get(j).getProduct().getName())){
+
+                        }else{
+                            cont++;
+                        }
+
+                    }
+                    if(cont==orders.size()){
+                        
+                        orders.add(new Order(products.get(i),num1,true));
+                        ReloadTable();
+                    }
+                
+                }else{
+                    
                 } 
             }
         }else if(e.getSource()==checkTransportB && transportationCostF.getText().isEmpty()==false){
@@ -380,15 +397,31 @@ public  class NewDeliveryPanel extends JPanel implements ActionListener, MouseLi
                 
                 deliveries.add(newd);
                 GuardarCargarDatos.SaveObject(deliveries, deliveryDataPath);
+                for(int i = 0 ; i<orders.size();i++){
+
+                    for(int j = 0;j<products.size();j++){
+
+                        if(orders.get(i).getProduct().getName().equalsIgnoreCase(products.get(j).getName())){
+
+                            products.get(j).setAmount((Integer.parseInt(products.get(j).getAmount())-orders.get(i).getAmount())+"");
+
+                        }
+
+                    }
+                    
+                }
+                GuardarCargarDatos.SaveObject(products, productDataPath);
                 daddy.ChangePanel(new ShowDeliveryPanel(daddy,grandpa));
         
+                }else{
+
                 }
         }else if(e.getSource()== backB){
                 daddy.dispose();
         }else if(e.getSource()==showCostB){
             if(transportationCostF.isEditable()==false && taxF.isEditable()==false && orders.size()!=0){
                 Delivery newd = new Delivery(orders, transpProd, taxProd, discountProd,(String)clientBox.getSelectedItem());
-                totalCostL.setText(newd.DeliveryCost()+"");
+                totalCostL.setText(newd.CalculatedCost()+"");
             }
         }else if(e.getSource()==deleteB){
           
@@ -423,7 +456,11 @@ public  class NewDeliveryPanel extends JPanel implements ActionListener, MouseLi
                 for(int j = 0;j<amountF.getText().length();j++){
                     newA = (newA*10)+(int)amountF.getText().charAt(j)-48;    
                 }
-                orders.get(index).setAmount(newA);
+                for(int i = 0; i< products.size();i++){
+                    if(orders.get(index).getProduct().getName().equals(products.get(i).getName()) && newA<=Integer.parseInt(products.get(i).getAmount()))
+                    orders.get(index).setAmount(newA);
+                }
+                
             }
             ReloadTable();
             this.index=-1;

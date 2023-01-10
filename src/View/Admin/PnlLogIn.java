@@ -6,9 +6,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 
-import Controller.Exeptions.EmptyFieldsExeption;
-import Controller.Exeptions.NotFoundAdminException;
-import Controller.WareHouse.Warehouse;
+import Controller.Exceptions.EmptyFieldsException;
+import Controller.Exceptions.NotFoundAdminException;
+import Controller.WareHouse.WareHouse;
 import Model.GuardarCargarDatos;
 import View.Warehouse.FrmStartWarehouse;
 import javax.imageio.ImageIO;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class PnlLogIn extends JPanel implements ActionListener, MouseInputListener, InCheckAdminOnSystem{
 
     private FrmStartWarehouse pater;
-	private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
+	private ArrayList<WareHouse> warehouses = new ArrayList<>(){};
 	private Image image;
 
 
@@ -193,9 +193,9 @@ public class PnlLogIn extends JPanel implements ActionListener, MouseInputListen
 
 				try {
 
-					throw new EmptyFieldsExeption();
+					throw new EmptyFieldsException();
 
-				} catch (EmptyFieldsExeption exc) {
+				} catch (EmptyFieldsException exc) {
 					
 					lblFillAll.setText(exc.getMessage());					
 					

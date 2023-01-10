@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
+import Controller.Exceptions.NotFoundAdminException;
+import Controller.Exceptions.WarehouseNotFoundException;
 import Controller.WareHouse.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class WarehousePanel extends JPanel implements ActionListener, MouseListe
     private JButton falseSearchB;
     private JButton falseSearchAdminB;
     private JButton searchAdminB;
-    private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
+    private ArrayList<WareHouse> warehouses = new ArrayList<>(){};
     private FrmStartWarehouse daddy;
     private Image image;
     
@@ -184,10 +186,17 @@ if(e.getSource()==manageB){
         add(falseSearchB);
         int value = -1;
         this.index=-1;
-        if(nameField.getText()==""){}else{
+        if(nameField.getText()==""){
+            try {
+                throw new WarehouseNotFoundException();
+            } catch (WarehouseNotFoundException e1) {
+                System.out.println(e1.getMessage());
+                e1.printStackTrace();
+            }
+        }else{
         for(int i = 0;i<warehouses.size();i++){
             if(warehouses.get(i).getName().equalsIgnoreCase(nameField.getText().stripIndent())){
-                Warehouse save = warehouses.get(i);
+                WareHouse save = warehouses.get(i);
                 warehouses.set(i, warehouses.get(0));
                 warehouses.set(0, save);
                 this.index=0;
@@ -224,10 +233,17 @@ if(e.getSource()==manageB){
         add(falseSearchAdminB);
         int value = -1;
         this.index=-1;
-        if(adminField.getText()==""){}else{
+        if(adminField.getText()==""){
+            try {
+                throw new NotFoundAdminException();
+            } catch (NotFoundAdminException e1) {
+                System.out.println(e1.getMessage());
+                e1.printStackTrace();
+            }
+        }else{
         for(int i = 0;i<warehouses.size();i++){
             if(warehouses.get(i).getAdmin().getName().equalsIgnoreCase(adminField.getText().stripIndent())){
-                Warehouse save = warehouses.get(i);
+                WareHouse save = warehouses.get(i);
                 warehouses.set(i, warehouses.get(0));
                 warehouses.set(0, save);
                 this.index=0;
@@ -272,23 +288,24 @@ public void paintComponent(Graphics g){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 public void mouseClicked(MouseEvent e) {
-if(e.getSource()==table){
+
+}
+
+public void mousePressed(MouseEvent e) { 
+    if(e.getSource()==table){
     
-Point point = e.getPoint();
-this.index = table.rowAtPoint(point);
-if(index!=-1){
-
-    daddy.setWarehouse(warehouses.get(index).getName());
-    EditableFields(false);
-    showInfo(index);
-    remove(searchB);
-    setSize(getWidth()+1,getHeight()+1);
-    setSize(getWidth()-1,getHeight()-1);
-} 
-}
-}
-
-public void mousePressed(MouseEvent e) {   
+        Point point = e.getPoint();
+        this.index = table.rowAtPoint(point);
+        if(index!=-1){
+        
+            daddy.setWarehouse(warehouses.get(index).getName());
+            EditableFields(false);
+            showInfo(index);
+            remove(searchB);
+            setSize(getWidth()+1,getHeight()+1);
+            setSize(getWidth()-1,getHeight()-1);
+        } 
+        }  
 }
 public void mouseReleased(MouseEvent e) {  
 }

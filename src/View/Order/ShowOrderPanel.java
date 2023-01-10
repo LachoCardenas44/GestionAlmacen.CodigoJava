@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import Model.*;
 import View.Warehouse.FrmStartWarehouse;
 import View.Warehouse.PnlChoice;
+import View.Warehouse.PnlGetInSupplier;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -73,7 +75,7 @@ public class ShowOrderPanel extends JPanel implements ActionListener,MouseListen
             table.setValueAt(orders.get(i).getProduct().getName(), i, 0);
             table.setValueAt(orders.get(i).getProduct().getSupplier(), i, 1);
             table.setValueAt(orders.get(i).getAmount(), i, 2);
-            table.setValueAt(orders.get(i).OrderCost(), i, 3);
+            table.setValueAt(orders.get(i).CalculatedCost(), i, 3);
             if(orders.get(i).getValidate()){
                 table.setValueAt("✔", i, 4);
             }else{
@@ -150,7 +152,7 @@ public class ShowOrderPanel extends JPanel implements ActionListener,MouseListen
             table.setValueAt(orders.get(i).getProduct().getName(), i, 0);
             table.setValueAt(orders.get(i).getProduct().getSupplier(), i, 1);
             table.setValueAt(orders.get(i).getAmount(), i, 2);
-            table.setValueAt(orders.get(i).OrderCost(), i, 3);
+            table.setValueAt(orders.get(i).CalculatedCost(), i, 3);
             if(orders.get(i).getValidate()){
                 table.setValueAt("✔", i, 4);
             }else{
@@ -175,10 +177,16 @@ public class ShowOrderPanel extends JPanel implements ActionListener,MouseListen
         }
        }else if(e.getSource()==valB){
         if(index!=-1){
+            if(PnlGetInSupplier.supplier.equals(orders.get(index).getProduct().getSupplier())){
+
             orders.get(index).setValidate(true);
             GuardarCargarDatos.SaveObject(orders, "src/data/"+grandpa.getWarehouse()+"order.dat");
             ReloadTable();
             this.index=-1;
+
+            }else{
+            JOptionPane.showMessageDialog(null, "You can only validate the orders with your name", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
         }
        }else if(e.getSource()==closeB){
         grandpa.toFront();
@@ -187,16 +195,13 @@ public class ShowOrderPanel extends JPanel implements ActionListener,MouseListen
         
     }
 
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) { 
+    }
+    public void mousePressed(MouseEvent e) {   
         if(e.getSource()==table){
             Point point = e.getPoint();
             this.index=table.rowAtPoint(point);
-        }
-        
-    }
-
-  
-    public void mousePressed(MouseEvent e) {        
+        }     
     }
     public void mouseReleased(MouseEvent e) {        
     }

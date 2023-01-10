@@ -6,7 +6,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 import Controller.ExternalAgents.Supplier;
-import Controller.WareHouse.Warehouse;
+import Controller.WareHouse.WareHouse;
 import Model.GuardarCargarDatos;
 import java.awt.*;
 import java.awt.event.*;
@@ -27,8 +27,9 @@ public class PnlGetInSupplier extends JPanel implements ActionListener, MouseInp
 	private JButton btnBack;	
 	private JButton btnDone;
 	private Image image ;
-	private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
+	private ArrayList<WareHouse> warehouses = new ArrayList<>(){};
 	private ArrayList<Supplier> suppliers = new ArrayList<>(){}; 
+    public static String supplier = "";
 
     public PnlGetInSupplier(FrmStartWarehouse pater) {        
         
@@ -196,6 +197,7 @@ public class PnlGetInSupplier extends JPanel implements ActionListener, MouseInp
 
 				if (isSupplierOnSystem(textField.getText(), textField_1.getText())) {
 					
+					supplier = textField.getText().trim();
 					pater.ShowWarehouseConsultation();
 
 				} else {

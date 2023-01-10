@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import Controller.ExternalAgents.Client;
 import Controller.ExternalAgents.Supplier;
-import Controller.WareHouse.Warehouse;
+import Controller.WareHouse.WareHouse;
 import Model.GuardarCargarDatos;
 import View.Warehouse.FrmStartWarehouse;
 
@@ -33,7 +33,7 @@ public class PnlAgentManagment extends JPanel implements ActionListener, MouseIn
     private JLabel lbCiClients;    
     private JLabel lbNumberCISupplier;
     private JLabel lbNumberCiClients;
-    private ArrayList<Warehouse> warehouses = new ArrayList<>(){};
+    private ArrayList<WareHouse> warehouses = new ArrayList<>(){};
     private ArrayList<Client> clients = new ArrayList<>(){};
     private ArrayList<Supplier> suppliers = new ArrayList<>(){};   
 
@@ -229,7 +229,7 @@ public class PnlAgentManagment extends JPanel implements ActionListener, MouseIn
         this.suppliers = suppliers;
     }
 
-    public ArrayList<Warehouse> getWarehouses() {
+    public ArrayList<WareHouse> getWarehouses() {
         return warehouses;
     }
 
